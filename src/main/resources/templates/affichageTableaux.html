@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="../static/css/style.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Liste des Tableaux présents</title>
+</head>
+<body>
+<h1>Liste de tous les tableaux</h1>
+<button><a th:href="@{ajouterTableauSansAuteur}" href='formulaireTableauSansAuteur.html'>Ajouter un tableau sans l'auteur</a></button>
+<button><a th:href="@{ajouterTableau}" href='formulaireTableau.html'>Ajouter un tableau</a></button>
+<table>
+    <tr>
+        <th>Titre</th>
+        <th>Support</th>
+        <th>Dimension</th>
+        <th>Auteur</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="t: ${tableaux}">
+        <td th:text="${t.titre}">Le titre du tableau</td>
+        <td th:text="${t.support}">Huile sur toile</td>
+        <td th:text="${t.dimension}"> 1m x 2m></td>
+        <td th:text="${t.auteur?.nom} ?: 'Auteur inconnu'">Picasso</td>
+        <td><a th:href="@{supprimerTableau(id=${t.id})}">Supprimer ce tableau</a></td>
+    </tr>
+</table>
+<hr/>
+<a th:href="@{/}" href="../static/index.html">Retour au menu</a>
+<hr/>
+</body>
+</html>

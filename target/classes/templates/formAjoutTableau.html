@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ajouter un tableau</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="../static/css/style.css"/>
+</head>
+<body>
+<h1>Ajouter un tableau</h1>
+<form th:object="${tableau}" method="POST" th:action="@{sauvegarderLeTableau}">
+        <label>titre du tableau:</label>
+        <input type="text" th:field="*{titre}"/>
+        <label>Auteur du tableau:</label>
+        <select th:field="*{auteur}">
+            <option value="0"></option>
+            <option th:each="a: ${artistes}" th:text="${a.nom}" th:value="${a.id}"></option>
+        </select>
+        <label>Support du tableau:</label>
+        <input type="text" th:field="*{support}"/>
+        <label>Dimension du tableau:</label>
+        <input type="text" th:field="*{dimension}"/>
+    <input type="submit" value="Valider"/> <input type="reset" value="Annuler"/>
+</form>
+<hr/>
+<a th:href="@{/}" href="../static/index.html">Retourner au menu</a>
+<hr/>
+</body>
+</html>
